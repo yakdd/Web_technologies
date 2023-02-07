@@ -20,6 +20,16 @@ VALUES('Остап Бендер', '2005-01-01', 'Москва, Хитровка,
       ('Феликс Сорокин', '1991-11-04', 'Москва, Вернадского, 120');
 
 
-SELECT name FROM users WHERE address LIKE '%Москва%'
-AND YEAR(CURDATE()) - YEAR(age) >= 18
-AND YEAR(CURDATE()) - YEAR(age) < 30;
+-- SELECT name FROM users WHERE address LIKE '%Москва%'
+-- AND YEAR(CURDATE()) - YEAR(age) >= 18
+-- AND YEAR(CURDATE()) - YEAR(age) < 30;
+
+
+SELECT * FROM users WHERE address LIKE '%Москва%'
+AND
+((YEAR(CURDATE())* 100 + MONTH(CURDATE())) * 100 + DAY(CURDATE())) -
+((YEAR(age)* 100 + MONTH(age)) * 100 + DAY(age)) >= 10000 * 18
+AND
+((YEAR(CURDATE())* 100 + MONTH(CURDATE())) * 100 + DAY(CURDATE())) -
+((YEAR(age)* 100 + MONTH(age)) * 100 + DAY(age)) < 10000 * 30
+;
